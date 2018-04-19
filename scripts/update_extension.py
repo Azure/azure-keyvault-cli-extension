@@ -3,24 +3,11 @@ from subprocess import Popen, PIPE
 from distutils.dir_util import copy_tree, remove_tree
 
 _source_md = '### Source Origin:'
-_exclude_dirs = ['__pycache__', '.idea', 'dist']
-_exclude_exts = ['.pyc']
 _replacements = {
     'azure.keyvault': 'azext_keyvault.keyvault',
     'azure.mgmt.keyvault': 'azext_keyvault.mgmt.keyvault',
     'azure.cli.command_modules.keyvault': 'azext_keyvault'
 }
-_code_file_header="""# pylint: disable-all
-
-# ---------------------------------------------------------------------------------
-# The code for this extension file is pulled from the {} repo and
-# modified to run inside a cli extension.  Changes may cause incorrect behavior and
-# will be lost if the code is regenerated. Please see the readme.md at the base of
-# the keyvault extension for details.
-# ---------------------------------------------------------------------------------
-
-"""
-
 
 def run_process(cmd, cwd):
     p = Popen(cmd, stdout=PIPE, stderr=PIPE, cwd=cwd)
@@ -46,22 +33,6 @@ def copy_file(src, dst, repo_name, replacements=None):
     if extension.lower() == '.py':
         with open(src, mode='r') as s:
             with open(dst, mode='w') as d:
-                first_line = s.readline()
-
-                # if this is a simple namespace declare copy the file and return
-                if 'declare_namespace(__name__)' in first_line:
-                    d.write(first_line)
-                    d.write(s.read())
-                    return
-
-                # preserve the encoding header if it exists
-                if first_line.startswith('# coding='):
-                    d.write(first_line)
-                    d.write(_code_file_header.format(repo_name))
-                else:
-                    d.write(_code_file_header.format(repo_name))
-                    d.write(first_line)
-
                 # if replacements are specified replace line by line
                 if replacements:
                     old = s.readline()
@@ -113,7 +84,7 @@ if __name__ == "__main__":
 
     sdk_root = args.sdk
     cli_root = args.cli
-    ext_root = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'azext_keyvault')
+    ext_root = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'azext_keyvault')
 
     data_sdk_src = os.path.join(sdk_root, 'azure-keyvault/azure/keyvault')
     mgmt_sdk_src = os.path.join(sdk_root, 'azure-mgmt-keyvault/azure/mgmt')
