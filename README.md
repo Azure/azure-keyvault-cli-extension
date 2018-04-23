@@ -1,19 +1,57 @@
-#  Key Vault Azure CLI Extension
+#  Microsoft Azure Key Vault Preview Extension for Azure CLI 2.0
 
 The Azure CLI extension for Key Vault is an extension which previews unreleased functionality in the keyvault command module.
 
-__NOTE__: The code for this extension is automatically pulled from the [azure-sdk-for-python](https://github.com/azure/azure-sdk-for-python) and the [azure-cli](https://github.com/azure/azure-cli) repos using update_extension.py, and updated to run as an Azure CLI extension.  Changes may cause incorrect behavior and will be lost if the code is regenerated.
+## Features
 
-## Manually updating the Extension
+New features currently being previewed in the Key Vault Preview Extension include:
 
-Clone the [azure-sdk-for-python](https://github.com/azure/azure-sdk-for-python) and the [azure-cli](https://github.com/azure/azure-cli) repos:
+- Managing storage account keys
+- Elliptic curve key support
+- Managing newtork ACLs to restrict the network accessibility of a vault
 
-    $ git clone https://github.com/azure/azure-sdk-for-python.git
-    $ git clone https://github.com/azure/azure-cli
+## Installing the Key Vault Preview extension
 
-From the base of this repo run the following command:
 
-    $ python ./scripts/update_extension.py --sdk <azure-sdk-for-python clone root> --cli <azure-cli clone root>
+1. If you haven't already install the Azure CLI 2.0.  
+
+    At a minimum your CLI core version must be 2.0.24 or above. Use az --version to validate. This version supports az extension commands and introduces the knack command framework.
+
+    Follow the installation instructions on [GitHub](https://github.com/Azure/azure-cli) or [Microsoft Docs](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli?view=azure-cli-latest) to setup Azure CLI in your environment.
+
+1. Using the 'az extension add' command install the Key Vault Preview Extesion.
+
+        $ az extension add --source 
+
+
+## Making updates to the extension
+The code for this extension is automatically pulled from the [keyvault-preview branch](https://github.com/Azure/azure-cli/tree/keyvault-preview) of the azure-cli repo using update_extension.py, and updated to run as an Azure CLI extension.  Users wishing to make changes to the extension should submit a pull request against the [keyvault-preview branch](https://github.com/Azure/azure-cli/tree/keyvault-preview).  Once the PR is merged the changes will be propogated to this repo automatically.  Directly changing code in this repo may cause incorrect behavior, and will be lost when the code is resynced from the azure-cli repo.
+
+## Locally updating and testing the extension
+For locally testing updates to the Key Vault CLI preview, users can manually update the code locally, using the following process.
+
+1. Clone this repo:
+
+        $ git clone https://github.com/Azure/azure-keyvault-cli-extension.git
+
+1. Clone the keyvault preview branch of the [azure-sdk-for-python](https://github.com/azure/azure-sdk-for-python) and the [azure-cli](https://github.com/azure/azure-cli) repos:
+
+        $ git clone https://github.com/azure/azure-sdk-for-python.git --branch keyvault_1.0_preview
+        $ git clone https://github.com/azure/azure-cli --branch keyvault-preview
+    
+1. Make updates as necessary to the azure-keyvault, azure-mgmt-keyvault, and azure-cli-keyvault packages
+
+1. Pull your changes from your azure-cli clone by running the following command from the base of your azure-keyvault-cli-extension clone:
+
+        $ python ./scripts/update_extension.py --sdk <azure-sdk-for-python clone root> --cli <azure-cli clone root>
+
+1. Build the whl installation package for the key vault preview extension by running the following command from the base of this repo:
+
+        $ python setup.py bdist_wheel -d ./dist
+
+1. Install the built keyvault preview extension package into the installed CLI.
+
+        $az extension add --source ./dist/keyvault_preview-0.1.0-py2.py3-none-any.whl
 
 # Contributing
 
