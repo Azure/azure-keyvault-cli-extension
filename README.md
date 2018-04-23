@@ -1,4 +1,4 @@
-#  Microsoft Azure Key Vault Preview Extension for Azure CLI 2.0
+#  Azure Key Vault Preview Extension for Azure CLI 2.0
 
 The Azure CLI extension for Key Vault is an extension which previews unreleased functionality in the keyvault command module.
 
