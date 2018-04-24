@@ -8,7 +8,7 @@
 from codecs import open
 from setuptools import setup, find_packages
 
-VERSION = "0.1.0"
+VERSION = "0.1.1"
 
 CLASSIFIERS = [
     'Development Status :: 4 - Beta',
@@ -32,12 +32,12 @@ DEPENDENCIES = [
 setup(
     name='keyvault_preview',
     version=VERSION,
-    description='The Azure CLI keyvault extension.',
-    long_description='An Azure CLI extension adding preview keyvault commands and updates.',
+    description='An Azure CLI Extension providing support for Azure Key Vault preview commands.',
+    long_description='An Azure CLI Extension providing support for Azure Key Vault preview commands.',
     license='MIT',
-    author='Microsoft',
+    author='Azure Key Vault',
     author_email='azurekeyvault@microsoft.com',
-    url='https://github.com/azure/azure-cli-extensions',
+    url='https://github.com/Azure/azure-keyvault-cli-extension',
     classifiers=CLASSIFIERS,
     packages=find_packages(),
     install_requires=DEPENDENCIES
