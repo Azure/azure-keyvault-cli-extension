@@ -23,7 +23,6 @@ CLASSIFIERS = [
     'Programming Language :: Python :: 3.6',
     'License :: OSI Approved :: MIT License',
 ]
-package_data={'azext_keyvault': ['azext_metadata.json']}
 setup(
     name='keyvault-preview',
     version=VERSION,
@@ -35,6 +34,6 @@ setup(
     url='https://github.com/Azure/azure-keyvault-cli-extension',
     classifiers=CLASSIFIERS,
     packages=find_packages(exclude=["tests"]),
-    install_requires=[]
-
+    install_requires=[],
+    package_data={'azext_keyvault': ['azext_metadata.json']}
 )
