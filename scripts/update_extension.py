@@ -24,7 +24,7 @@ def list_repo_files(dir):
     return [os.path.join(dir, file) for file in ls_tree_out.split()]
 
 
-def copy_file(src, dst, repo_name, replacements=None):
+def copy_file(src, dst, replacements=None):
 
     if not os.path.exists(os.path.dirname(dst)):
         os.makedirs(os.path.dirname(dst))
@@ -71,7 +71,7 @@ def copy_repo_files(src, dst, repo_name, replacements=None):
         dst_file = src_file.replace(src, dst)
         print(dst_file)
 
-        copy_file(src_file, dst_file, repo_name, replacements)
+        copy_file(src_file, dst_file, replacements)
 
     return tag
 
@@ -84,7 +84,8 @@ if __name__ == "__main__":
 
     sdk_root = args.sdk
     cli_root = args.cli
-    ext_root = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'azext_keyvault')
+    repo_root = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..')
+    ext_root = os.path.join(repo_root, 'azext_keyvault')
 
     data_sdk_src = os.path.join(sdk_root, 'azure-keyvault/azure/keyvault')
     mgmt_sdk_src = os.path.join(sdk_root, 'azure-mgmt-keyvault/azure/mgmt')
@@ -108,3 +109,8 @@ if __name__ == "__main__":
     # write the sources.md file
     with open(os.path.join(ext_root, 'source.md'), 'w') as f:
         f.write('\n\t'.join([_source_md, sdk_tag, cli_tag]) + '\n')
+
+    # copy the azext_metadata.json
+    md_src = os.path.join(repo_root, 'azext_metadata.json')
+    md_dst = os.path.join(ext_root, 'azext_metadata.json')
+    copy_file(md_src, md_dst, None)

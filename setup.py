@@ -23,22 +23,18 @@ CLASSIFIERS = [
     'Programming Language :: Python :: 3.6',
     'License :: OSI Approved :: MIT License',
 ]
-DEPENDENCIES = [
-    'cryptography>=2.1.4',
-    'requests>=2.18.4',
-    'pyOpenSSL'
-]
-
+package_data={'azext_keyvault': ['azext_metadata.json']}
 setup(
-    name='keyvault_preview',
+    name='keyvault-preview',
     version=VERSION,
-    description='An Azure CLI Extension providing support for Azure Key Vault preview commands.',
-    long_description='An Azure CLI Extension providing support for Azure Key Vault preview commands.',
+    description='Preview Azure Key Vault commands.',
+    long_description='Additional commands providing support for preview Azure Key Vault features.',
     license='MIT',
     author='Azure Key Vault',
     author_email='azurekeyvault@microsoft.com',
     url='https://github.com/Azure/azure-keyvault-cli-extension',
     classifiers=CLASSIFIERS,
-    packages=find_packages(),
-    install_requires=DEPENDENCIES
+    packages=find_packages(exclude=["tests"]),
+    install_requires=[]
+
 )
