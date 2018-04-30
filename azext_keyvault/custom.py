@@ -364,19 +364,19 @@ def update_keyvault(instance, enabled_for_deployment=None,
         instance.properties.enabled_for_template_deployment = enabled_for_template_deployment
 
     if enable_soft_delete is not None:
-        instance.properties.properties.enable_soft_delete = enable_soft_delete
+        instance.properties.enable_soft_delete = enable_soft_delete
 
     if enable_purge_protection is not None:
-        instance.properties.properties.enable_purge_protection = enable_purge_protection
+        instance.properties.enable_purge_protection = enable_purge_protection
 
     if bypass or default_action:
-        if instance.properties.properties.network_acls is None:
-            instance.properties.properties.network_acls = _create_network_rule_set(bypass, default_action)
+        if instance.properties.network_acls is None:
+            instance.properties.network_acls = _create_network_rule_set(bypass, default_action)
         else:
             if bypass:
-                instance.properties.properties.network_acls.bypass = bypass
+                instance.properties.network_acls.bypass = bypass
             if default_action:
-                instance.properties.properties.network_acls.default_action = default_action
+                instance.properties.network_acls.default_action = default_action
     return instance
 
 
@@ -940,9 +940,8 @@ def delete_certificate_issuer_admin(client, vault_base_url, issuer_name, email):
         issuer.attributes)
 # endregion
 
+
 # region storage_account
-
-
 def backup_storage_account(client, file_path, vault_base_url=None,
                            storage_account_name=None, identifier=None):  # pylint: disable=unused-argument
     backup = client.backup_storage_account(vault_base_url, storage_account_name).value
@@ -954,5 +953,4 @@ def restore_storage_account(client, vault_base_url, file_path):
     with open(file_path, 'rb') as file_in:
         data = file_in.read()
         return client.restore_storage_account(vault_base_url, data)
-
 # endregion
