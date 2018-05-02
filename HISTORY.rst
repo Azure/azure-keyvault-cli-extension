@@ -2,6 +2,10 @@
 
 Release History
 ===============
+0.1.3
+++++++
+* adding storage account regenerate-key command
+
 0.1.2
 ++++++
 * adding storage account update commands
