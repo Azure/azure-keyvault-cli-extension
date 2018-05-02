@@ -21,7 +21,7 @@ New features currently being previewed in the Key Vault Preview Extension includ
 
 1. Using the 'az extension add' command install the Key Vault Preview Extesion.
 
-        $ az extension add --source 
+        $ az extension add --name keyvault-preview
 
 
 ## Making updates to the extension
