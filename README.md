@@ -8,7 +8,7 @@ New features currently being previewed in the Key Vault Preview Extension includ
 
 - Managing storage account keys
 - Elliptic curve key support
-- Managing newtork ACLs to restrict the network accessibility of a vault
+- Managing network ACLs to restrict the network accessibility of a vault
 
 ## Installing the Key Vault Preview extension
 
