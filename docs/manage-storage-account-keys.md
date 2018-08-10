@@ -11,3 +11,5 @@
         az storage account keys list -n msakstorage -g ssrg --query [0].keyName
 
 1. Add the storage account to the vault
+
+        keyvault storage add --vault-name <vault_name> -n <storage_account_name> --active-key-name key1 --auto-regenerate-key --regeneration-period P90D --resource-id <storage_account_resource_id>
