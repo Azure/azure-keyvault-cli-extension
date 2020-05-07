@@ -40,7 +40,7 @@ class HttpMessageSecurity(object):
         """
         Adds authorization header, and encrypts and signs the request if supported on the specific request.
         :param request: unprotected request to apply security protocol
-        :return: protected request with appropriate security protocal applied
+        :return: protected request with appropriate security protocol applied
         """
         # Setup the auth header on the request
         # Due to limitations in the service we hard code the auth scheme to 'Bearer' as the service will fail with any
@@ -89,7 +89,7 @@ class HttpMessageSecurity(object):
         """
         Removes protection from the specified response
         :param request: response from the key vault service
-        :return: unprotected response with any security protocal encryption removed
+        :return: unprotected response with any security protocol encryption removed
         """
         body = response.content
         # if the current message security doesn't support message protection, the body is empty, or the request failed
