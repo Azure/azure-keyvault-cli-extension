@@ -17,7 +17,7 @@ New features currently being previewed in the Key Vault Preview Extension includ
 
     At a minimum your CLI core version must be 2.0.24 or above. Use az --version to validate. This version supports az extension commands and introduces the knack command framework.
 
-    Follow the installation instructions on [GitHub](https://github.com/Azure/azure-cli) or [Microsoft Docs](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli?view=azure-cli-latest) to setup Azure CLI in your environment.
+    Follow the installation instructions on [GitHub](https://github.com/Azure/azure-cli) or [Microsoft Docs](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli) to setup Azure CLI in your environment.
 
 1. Using the 'az extension add' command install the Key Vault Preview Extesion.
 
